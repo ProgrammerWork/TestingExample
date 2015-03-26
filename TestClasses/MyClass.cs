@@ -2,7 +2,7 @@
 
 namespace TestClasses
 {
-    public class MyClass
+    public class MyClass : IMyClass
     {
         public string MyTrimmingFunc(string attr)
         {
@@ -12,6 +12,11 @@ namespace TestClasses
                 throw new ArgumentNullException();
             }
             return attr.Trim();
+        }
+
+        public string MyUpperFunc(string attr)
+        {
+            return attr.ToUpper();
         }
     }
 }
