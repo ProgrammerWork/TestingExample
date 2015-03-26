@@ -16,7 +16,8 @@ namespace TestClasses
         public string Transform(string attr)
         {
             var v = MyClass.MyUpperFunc(attr);
-            return new string(v.Reverse().ToArray());
+            var vv = _mAC.MyLowerFunc(v);
+            return new string(vv.Reverse().ToArray());
         }
     }
 }
