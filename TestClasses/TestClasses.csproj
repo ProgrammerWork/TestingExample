@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMyAnotherClass.cs" />
     <Compile Include="IMyClass.cs" />
+    <Compile Include="MyAnotherClass.cs" />
     <Compile Include="MyClass.cs" />
     <Compile Include="MySecondClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

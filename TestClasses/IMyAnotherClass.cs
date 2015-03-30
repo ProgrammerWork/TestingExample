@@ -2,6 +2,6 @@
 {
     public interface IMyAnotherClass
     {
-        public string MyLowerFunc(string str);
+        string MyLowerFunc(string str);
     }
 }
