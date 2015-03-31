@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using FluentAssertions;
 using TestClasses;
 
 namespace TestClassesTests
@@ -17,7 +18,8 @@ namespace TestClassesTests
             var result = classEntity.MyTrimmingFunc(myAttrForTest);
 
             //assert
-            Assert.AreEqual(myAttrForTest, result);
+            result.Should().Be(myAttrForTest);
+            //Assert.AreEqual(myAttrForTest, result);
         }
 
         [Test]
@@ -30,7 +32,8 @@ namespace TestClassesTests
             //act
             var res = new MyClass().MyTrimmingFunc(inputWithTrailingSpaces);
 
-            Assert.AreEqual(input, res);
+            //Assert.AreEqual(input, res);
+            res.Should().StartWith("I am").And.EndWith("trailing space");
         }
 
         [Test]
@@ -44,7 +47,8 @@ namespace TestClassesTests
             var res = new MyClass().MyTrimmingFunc(inputWithBeginningSpaces);
 
             //assert
-            Assert.AreEqual(input, res);
+            //Assert.AreEqual(input, res);
+            res.Should().BeOfType<string>().And.Equals(input);
         }
 
         [Test]
@@ -55,7 +59,8 @@ namespace TestClassesTests
 
             var res = new MyClass().MyTrimmingFunc(testInput);
             
-            Assert.AreEqual(input, res);
+            //Assert.AreEqual(input, res);
+            res.Should().HaveLength(input.Length, "expected this string length");
         }
 
         [Test]
@@ -63,9 +68,10 @@ namespace TestClassesTests
         {
             string input = null;
 
-            TestDelegate action = () => new MyClass().MyTrimmingFunc(input);
+            Action action = () => new MyClass().MyTrimmingFunc(input);
 
-            Assert.Throws<ArgumentNullException>(action);
+            action.ShouldThrow<ArgumentNullException>();
+           // Assert.Throws<ArgumentNullException>(action);
         }
     }
 }
