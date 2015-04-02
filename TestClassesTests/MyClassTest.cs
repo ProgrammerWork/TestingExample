@@ -1,73 +1,70 @@
-﻿using System;
-using FluentAssertions;
-using NUnit.Framework;
-using TestClasses;
+﻿//using System;
+//using FluentAssertions;
+//using NUnit.Framework;
+//using TestClasses;
 
-namespace TestClassesTests
-{
-    public class MyClassTest
-    {
-        [Test]
-        public void MyTrimFunc_ReturnsTheSame_ThenThereAreNoSpacesAtEnds()
-        {
-            //arrange
-            var classEntity = new MyClass();
-            const string myAttrForTest = "I am attr";
+//namespace TestClassesTests
+//{
+//    public class MyClassTest
+//    {
+//        [Test]
+//        public void MyTrimFunc_ReturnsTheSame_ThenThereAreNoSpacesAtEnds()
+//        {
+//            //arrange
+//            var classEntity = new MyClass();
+//            const string myAttrForTest = "I am attr";
 
-            //act
-            var result = classEntity.MyTrimmingFunc(myAttrForTest);
+//            //act
+//            var result = classEntity.MyTrimmingFunc(myAttrForTest);
 
-            //assert
-            result.Should().Be(myAttrForTest);
-        }
+//            //assert
+//            result.Should().Be(myAttrForTest);
+//        }
 
-        [Test]
-        public void MyTrimFunc_TrimsTrailingSpaces_ForInputWithTrailingSpaces()
-        {
-            //arrange
-            var input = "I am input with trailing space";
-            var inputWithTrailingSpaces = input + " ";
+//        [Test]
+//        public void MyTrimFunc_TrimsTrailingSpaces_ForInputWithTrailingSpaces()
+//        {
+//            //arrange
+//            const string input = "I am input with trailing space";
+//            const string inputWithTrailingSpaces = input + " ";
+//            var res = new MyClass().MyTrimmingFunc(inputWithTrailingSpaces);
+//            res.Should().Be(input);
+//        }
 
-            //act
-            var res = new MyClass().MyTrimmingFunc(inputWithTrailingSpaces);
+//        [Test]
+//        public void MyTrimFunc_TrimsBeginningSpaces_ThenThereAreSome()
+//        {
+//            //arrange
+//            var input = "I am input for your test";
+//            var inputWithBeginningSpaces = " " + input;
 
-            res.Should().Be(input);
-        }
+//            //act
+//            var res = new MyClass().MyTrimmingFunc(inputWithBeginningSpaces);
 
-        [Test]
-        public void MyTrimFunc_TrimsBeginningSpaces_ThenThereAreSome()
-        {
-            //arrange
-            var input = "I am input for your test";
-            var inputWithBeginningSpaces = " " + input;
+//            //assert
+//            res.Should().Be(input);
+//        }
 
-            //act
-            var res = new MyClass().MyTrimmingFunc(inputWithBeginningSpaces);
+//        [TestCase("My input")]
+//        [TestCase("My second input")]
+//        public void MyTrimFunc_TrimsAllSpaces_ThenThereAreSpacesOnBothSides(string input)
+//        {
+//            //var input = "My input";
+//            var testInput = " " + input + " ";
 
-            //assert
-            res.Should().Be(input);            
-        }
+//            var res = new MyClass().MyTrimmingFunc(testInput);
 
-        [TestCase("My input")]
-        [TestCase("My second input")]
-        public void MyTrimFunc_TrimsAllSpaces_ThenThereAreSpacesOnBothSides(string input)
-        {
-            //var input = "My input";
-            var testInput = " " + input + " ";
+//            res.Should().Be(input);
+//        }
 
-            var res = new MyClass().MyTrimmingFunc(testInput);
+//        [Test]
+//        public void MyTrimFunc_FiresArgumentNullException_OnNullInput()
+//        {
+//            string input = null;
 
-            res.Should().Be(input);
-        }
+//            Action action = () => new MyClass().MyTrimmingFunc(input);
 
-        [Test]
-        public void MyTrimFunc_FiresArgumentNullException_OnNullInput()
-        {
-            string input = null;
-
-            Action action = () => new MyClass().MyTrimmingFunc(input);
-
-            action.ShouldThrow<ArgumentNullException>();
-        }
-    }
-}
+//            action.ShouldThrow<ArgumentNullException>();
+//        }
+//    }
+//}

@@ -54,6 +54,7 @@
     <Compile Include="MyClassTest.cs" />
     <Compile Include="MySecondClassTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringSorterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
