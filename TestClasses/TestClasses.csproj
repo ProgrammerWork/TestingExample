@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomeworkClass.cs" />
     <Compile Include="IMyAnotherClass.cs" />
     <Compile Include="IMyClass.cs" />
     <Compile Include="MyAnotherClass.cs" />
     <Compile Include="MyClass.cs" />
+    <Compile Include="MyExtention.cs" />
     <Compile Include="MySecondClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringSorter.cs" />
