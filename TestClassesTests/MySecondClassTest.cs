@@ -5,19 +5,6 @@ using TestClasses;
 
 namespace TestClassesTests
 {
-    class TestMyClass : IMyClass
-    {
-        public string MyTrimmingFunc(string attr)
-        {
-            return default(string);
-        }
-
-        public string MyUpperFunc(string attr)
-        {
-            return default(string);
-        }
-    }
-
     public class MySecondClassTest
     {
         [TestCase("my string", "gnirts ym")]
@@ -26,16 +13,16 @@ namespace TestClassesTests
         {
             //arrange
             var mySecondClass = new MySecondClass();
-            var moq = new Mock<IMyClass>();
-            moq.Setup(d => d.MyUpperFunc(It.IsAny<string>())).Returns<string>(str => str);
-            mySecondClass.MyClass = moq.Object;
+            var moq = new Mock<IMyAnotherClass>();
+            moq.Setup(d => d.MyLowerFunc(It.IsAny<string>())).Returns<string>(str => str);
+            mySecondClass.MyAnotherClass = moq.Object;
 
             //act
             var res = mySecondClass.Transform(input);
 
             //assert
             res.Should().Be(expect);
-            moq.Verify((c)=>c.MyUpperFunc(It.IsAny<string>()), Times.Once());
+            moq.Verify((c) => c.MyLowerFunc(It.IsAny<string>()), Times.Once());
         }
 
         [Test]
@@ -43,17 +30,16 @@ namespace TestClassesTests
         {
             //arrange
             var input = "My";
-            var expect = "yM";
             var mySecondClass = new MySecondClass();
-            var moq = new Mock<IMyClass>();
-            moq.Setup(d => d.MyUpperFunc(It.IsAny<string>())).Returns<string>(str => str);
-            mySecondClass.MyClass = moq.Object;
+            var moq = new Mock<IMyAnotherClass>();
+            moq.Setup(d => d.MyLowerFunc(It.IsAny<string>())).Returns<string>(str => str);
+            mySecondClass.MyAnotherClass = moq.Object;
 
             //act
             mySecondClass.Transform(input);
 
             //assert
-            moq.Verify((c) => c.MyUpperFunc(input), Times.AtMostOnce());
+            moq.Verify((c) => c.MyLowerFunc(input), Times.AtMostOnce());
         }
     }
 }
