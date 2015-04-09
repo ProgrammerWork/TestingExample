@@ -9,6 +9,12 @@ namespace TestClassesTests
     {
         private HomeworkClass homeworkClassInstance = new HomeworkClass();
 
+        [SetUp]
+        public void SetUp()
+        {
+            homeworkClassInstance = new HomeworkClass();
+        }
+
         [Test]
         public void HomeworkClass_ReturnNull_ForNullInput()
         {
@@ -29,12 +35,13 @@ namespace TestClassesTests
             var postProcessingStringArray = homeworkClassInstance.DoSomething(inputStringArray);
             // assert
             postProcessingStringArray.Should().HaveCount(2 * inputStringArray.Length);
-            for (int idx = 0; idx < inputStringArray.Length; ++idx) { 
+            for (int idx = 0; idx < inputStringArray.Length; ++idx)
+            {
                 postProcessingStringArray[idx].Should().BeEquivalentTo(expectationStringArray[idx]);
             }
         }
 
-        string[][] inputStringData = new [] {
+        string[][] inputStringData = new[] {
                     new [] { "one string" },
                     new [] { "one", "two string"},
                     new [] { "1", "two", "line", "another line", "and another.." },
@@ -65,7 +72,7 @@ namespace TestClassesTests
         [TestCase(new string[] { "SOURCE" },
                   new string[] { "bsource",
                                  "sourceMySuffix"}, "", "b")]
-        [TestCase(new string[] { "SOURCE"},
+        [TestCase(new string[] { "SOURCE" },
                   new string[] { "MySuffixaasource",
                                  "sourceMySuffixbb" }, "aa", "bb")]
         [TestCase(new string[] { "SOURCE" },
