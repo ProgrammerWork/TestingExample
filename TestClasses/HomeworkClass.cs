@@ -1,32 +1,37 @@
-﻿namespace TestClasses
+﻿using System;
+namespace TestClasses
 {
     public class HomeworkClass
     {
-        public string[] DoSomething(string[] strings, string prefix, string postfix)
+        public string[] DoSomething(string[] strings, string prefix = "", string postfix = "")
         {
-            // get array with input array length
+            if (strings == null) return null;
+            if (prefix == null) prefix = string.Empty;
+            if (postfix == null) postfix = string.Empty;
+
+            Tuple<string, string> fixes = SumLengthLessThen(prefix, postfix, 2) ?
+                new Tuple<string, string>(postfix, prefix) :
+                new Tuple<string, string>(prefix, postfix);
+
             var s = new string[2 * strings.Length];
-            var effectivePrefix = prefix;
-            var effectivePostfix = postfix;
-            //if length of pre and postfixes are like this
-            if (!(prefix.Length > 1 - postfix.Length))
+            for (var i = 0; i < strings.Length; ++i)
             {
-                effectivePrefix = postfix;
-                effectivePostfix = prefix;
-            }
-            for (var i = 0; i < s.Length; i++)
-            {
-                s[i] = "MySuffix" + effectivePrefix + strings[i / 2].ToLower();
-                s[2 * i] = strings[i / 2].ToLower() + "MySuffix" + effectivePostfix;
-            }
-            for (var i = strings.Length; i < s.Length; i++)
-            {
-                if (s[i].EndsWith("MySuffix") && effectivePostfix != "MySuffix")
-                {
-                    s[i - strings.Length] = s[i - strings.Length].Remove(0, 9);
+                if (strings[i] == null) {
+                    throw new ArgumentException();
                 }
+                var current_string = strings[i].ToLower();
+                s[i] = (fixes.Item2.Length == 0) ? string.Empty : MAGIC_WORD;
+                s[i] += fixes.Item1 + current_string;
+                s[strings.Length + i] = current_string + MAGIC_WORD + fixes.Item2;
             }
             return s;
         }
+
+        private bool SumLengthLessThen(string str1, string str2, int maxVal)
+        {
+            return (str1.Length + str2.Length) < maxVal;
+        }
+
+        private const string MAGIC_WORD = "MySuffix";
     }
 }
